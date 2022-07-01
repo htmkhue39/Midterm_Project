@@ -1,71 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:orientation="vertical"
-    android:background="@color/white"
-    android:fitsSystemWindows="true">
+    android:focusableInTouchMode="true"
+    >
 
-    <LinearLayout
-        android:id="@+id/linear_layout"
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/bt_sort"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
-        >
+        android:layout_margin="20dp"
+        android:background="@color/white"
+        android:src="@drawable/ic_baseline_sort_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+    />
 
-        <ImageButton
-            android:id="@+id/bt_sort"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@color/white"
-            android:src="@drawable/ic_baseline_sort_24" />
-
-        <ImageButton
-            android:id="@+id/bt_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="200dp"
-            android:layout_weight="1"
-            android:background="@null"
-            android:src="@drawable/ic_baseline_shopping_cart_24" />
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_shopping_cart_24"
+    />
 
     <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linear_layout"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="10dp"
         android:text="FOODIE"
         android:textColor="@color/black"
         android:textSize="35sp"
-        android:textStyle="bold" />
-
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/bt_sort"
+        app:layout_constraintTop_toBottomOf="@+id/bt_sort" />
 
     <EditText
         android:id="@+id/edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/app_name"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_margin="10dp"
         android:background="#f0f0f0"
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:drawablePadding="20dp"
         android:hint="Search"
         android:padding="20dp"
         android:textColor="@color/black"
-        android:textColorHint="#cccccc" />
+        android:textColorHint="#cccccc"
+        app:layout_constraintEnd_toEndOf="@+id/app_name"
+        app:layout_constraintStart_toStartOf="@+id/app_name"
+        app:layout_constraintTop_toBottomOf="@+id/app_name" />
 
+    <TextView
+        android:id="@+id/text_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Select Categories"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/edit_text"
+        app:layout_constraintStart_toStartOf="@+id/edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/edit_text" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_category" />
+
+    <TextView
+        android:id="@+id/text_popular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Popular"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:clipToPadding="false"
+        android:paddingStart="22dp"
+        android:paddingEnd="22dp"
+        app:layout_constraintEnd_toEndOf="@+id/text_popular"
+        app:layout_constraintStart_toStartOf="@+id/text_popular"
+        app:layout_constraintTop_toBottomOf="@+id/text_popular" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
@@ -75,47 +112,11 @@
         app:itemBackground="@color/black"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView2"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
+        app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/menu_bottom" />
-
-    <TextView
-        android:id="@+id/text_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Category"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:layout_marginStart="40dp"
-        android:layout_below="@id/edit_text"
-    />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/text_category"
-        android:clipToPadding="false"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp" />
-
-    <TextView
-        android:id="@+id/text_popular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Popular"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        android:textColor="@color/black"
-        android:layout_marginStart="40dp"
-        android:layout_below="@id/recyclerView"
-        />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false"
-        android:paddingStart="22dp"
-        android:paddingEnd="22dp"
-        android:layout_below="@+id/text_popular" />
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
