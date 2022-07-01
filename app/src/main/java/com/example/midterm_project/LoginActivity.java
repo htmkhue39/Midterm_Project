@@ -5,6 +5,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
+import com.example.midterm_project.Adapter.LoginAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
@@ -57,12 +58,12 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                //Never use
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                //Never use
             }
         });
     }
