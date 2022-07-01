@@ -9,14 +9,16 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.midterm_project.Adapter.CategoryAdaptor;
+import com.example.midterm_project.Adapter.PopularAdaptor;
 import com.example.midterm_project.Domain.CategoryDomain;
+import com.example.midterm_project.Domain.FoodDomain;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private RecyclerView.Adapter adapter;
-    private RecyclerView recyclerViewCategoryList;
+    private RecyclerView.Adapter adapter, adapter2;
+    private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         recyclerViewCategory();
+        recyclerViewPopular();
     }
 
     private void recyclerViewCategory(){
@@ -57,5 +60,19 @@ public class MainActivity extends AppCompatActivity {
 
         adapter=new CategoryAdaptor(category);
         recyclerViewCategoryList.setAdapter(adapter);
+    }
+
+    private void recyclerViewPopular(){
+        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerViewPopularList=findViewById(R.id.recyclerView2);
+        recyclerViewPopularList.setLayoutManager(linearLayoutManager);
+
+        ArrayList<FoodDomain> foodList = new ArrayList<>();
+        foodList.add(new FoodDomain("Peperoni pizza", "pizza","slices pepperoni, mozzerella cheese, oregano, ground black peper", 9.776));
+        foodList.add(new FoodDomain("Cheese Burger", "pop_2", "Beef, Cheese, Sauce, Tomato", 8.79));
+        foodList.add(new FoodDomain("Vegetable pizze", "pop_3", "olive oil, cherry tomatoes, oregano", 10.0));
+
+        adapter2=new PopularAdaptor(foodList);
+        recyclerViewPopularList.setAdapter(adapter2);
     }
 }
