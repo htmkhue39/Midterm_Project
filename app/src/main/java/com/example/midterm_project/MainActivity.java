@@ -14,6 +14,7 @@ import android.widget.ImageView;
 
 import com.example.midterm_project.Adapter.CategoryAdapter;
 import com.example.midterm_project.Adapter.FoodAdapter;
+import com.example.midterm_project.Cart.Cart;
 import com.example.midterm_project.Domain.CategoryDomain;
 import com.example.midterm_project.Domain.FoodDomain;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -39,9 +40,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mDatabase = FirebaseDatabase.getInstance().getReference();
         bt_cart=findViewById(R.id.cart);
+
+        Cart.initCart();
 
         bt_cart.setOnClickListener(new View.OnClickListener() {
             @Override

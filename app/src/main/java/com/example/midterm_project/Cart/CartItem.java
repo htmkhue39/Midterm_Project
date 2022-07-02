@@ -4,9 +4,9 @@ import com.example.midterm_project.Domain.FoodDomain;
 
 public class CartItem {
     FoodDomain food;
-    int quantity;
+    long quantity;
 
-    public CartItem(FoodDomain food, int quantity) {
+    public CartItem(FoodDomain food, long quantity) {
         this.food = food;
         this.quantity = quantity;
     }
@@ -19,19 +19,19 @@ public class CartItem {
         this.food = food;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
-    public void increaseQuantity(int quantity) {
+    public void increaseQuantity(long quantity) {
         this.quantity += quantity;
     }
 
-    public void decreaseQuantity(int quantity) {
+    public void decreaseQuantity(long quantity) {
         this.quantity -= quantity;
     }
 }
