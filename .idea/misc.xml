@@ -3,35 +3,36 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/button_add.xml" value="0.1285" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/button_normal.xml" value="0.1" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/cart_background.xml" value="0.1" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/cat_bg.xml" value="0.1" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/cat_bg1.xml" value="0.1865" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/cat_bg2.xml" value="0.1" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/cat_bg3.xml" value="0.1" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/cat_bg4.xml" value="0.1" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/custom_item_bg.xml" value="0.1865" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/edit_text_bg.xml" value="0.1" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/ic_baseline_sort_24.xml" value="0.189" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/vie_bg.xml" value="0.1525" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/drawable/viewholder_popular.xml" value="0.1" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/activity_all_category.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/activity_all_category2.xml" value="0.2078804347826087" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/activity_cart_list.xml" value="0.264" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/activity_food_detail.xml" value="0.17543859649122806" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/activity_intro.xml" value="0.2" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/activity_login.xml" value="0.4" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/activity_main2.xml" value="0.1" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/activity_profile.xml" value="0.2427536231884058" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/cart_item.xml" value="0.536" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/edit_profile.xml" value="0.24139492753623187" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/login_tab_fragment.xml" value="0.264" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/signup_tab_fragment.xml" value="0.2" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/viewholder_category.xml" value="0.536" />
-        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/viewholder_popular.xml" value="0.264" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/viewholder_food.xml" value="0.25" />
+        <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/viewholder_popular.xml" value="0.72" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/menu/menu_bottom.xml" value="0.24635416666666668" />
-        <entry key="app/src/main/res/drawable/viewholder_popular.xml" value="0.1685" />
-        <entry key="app/src/main/res/layout/activity_cart_list.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/activity_food_detail.xml" value="0.2536231884057971" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/cart_item.xml" value="0.23641304347826086" />
-        <entry key="app/src/main/res/layout/login_tab_fragment.xml" value="0.19610507246376813" />
-        <entry key="app/src/main/res/layout/signup_tab_fragment.xml" value="0.14444444444444443" />
-        <entry key="app/src/main/res/layout/viewholder_category.xml" value="0.2536231884057971" />
-        <entry key="app/src/main/res/layout/viewholder_popular.xml" value="0.2536231884057971" />
-        <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.3098958333333333" />
       </map>
     </option>
   </component>
