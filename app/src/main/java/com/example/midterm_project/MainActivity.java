@@ -2,6 +2,7 @@ package com.example.midterm_project;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.example.midterm_project.Adapter.CategoryAdaptor;
@@ -72,17 +74,26 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewCategoryList.setAdapter(adapter);
     }
 
-    private void recyclerViewPopular(){
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerViewPopularList=findViewById(R.id.recyclerView2);
-        recyclerViewPopularList.setLayoutManager(linearLayoutManager);
+    private void recyclerViewPopular() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false){
+            public boolean canScrollVertically() {
+                return true;
+            }
+        };
+        recyclerViewPopularList = findViewById(R.id.recyclerView2);
+        recyclerViewPopularList.setLayoutManager(gridLayoutManager);
 
         ArrayList<FoodDomain> foodList = new ArrayList<>();
-        foodList.add(new FoodDomain("Peperoni pizza", "pizza","slices pepperoni, mozzerella cheese, oregano, ground black peper", 9.776));
+        foodList.add(new FoodDomain("Peperoni pizza", "pizza", "slices pepperoni, mozzerella cheese, oregano, ground black peper", 9.776));
         foodList.add(new FoodDomain("Cheese Burger", "pop_2", "Beef, Cheese, Sauce, Tomato", 8.79));
         foodList.add(new FoodDomain("Vegetable pizze", "pop_3", "olive oil, cherry tomatoes, oregano", 10.0));
+        foodList.add(new FoodDomain("Vegetable pizze", "pop_3", "olive oil, cherry tomatoes, oregano", 10.0));
+        foodList.add(new FoodDomain("Vegetable pizze", "pop_3", "olive oil, cherry tomatoes, oregano", 10.0));
+        foodList.add(new FoodDomain("Vegetable pizze", "pop_3", "olive oil, cherry tomatoes, oregano", 10.0));
 
-        adapter2=new PopularAdaptor(foodList);
+
+        adapter2 = new PopularAdaptor(foodList);
         recyclerViewPopularList.setAdapter(adapter2);
     }
+
 }

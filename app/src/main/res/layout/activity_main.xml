@@ -82,10 +82,11 @@
 
     <TextView
         android:id="@+id/text_popular"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="Popular"
+        android:text="All foods"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
@@ -95,14 +96,17 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
         android:clipToPadding="false"
         android:paddingStart="22dp"
         android:paddingEnd="22dp"
-        app:layout_constraintEnd_toEndOf="@+id/text_popular"
-        app:layout_constraintStart_toStartOf="@+id/text_popular"
-        app:layout_constraintTop_toBottomOf="@+id/text_popular" />
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_popular"
+        app:layout_constraintBottom_toTopOf="@id/bottom_nav"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
@@ -113,9 +117,9 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView2"
         app:layout_constraintVertical_bias="1.0"
         app:menu="@menu/menu_bottom" />
