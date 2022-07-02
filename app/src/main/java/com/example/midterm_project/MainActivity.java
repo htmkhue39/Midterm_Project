@@ -16,6 +16,7 @@ import com.example.midterm_project.Adapter.PopularAdaptor;
 import com.example.midterm_project.Domain.CategoryDomain;
 import com.example.midterm_project.Domain.FoodDomain;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 
@@ -39,6 +40,11 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_favo:
                         break;
                     case R.id.action_info:
+                        //TODO: Change this
+                        FirebaseAuth.getInstance().signOut();
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                        finish();
+
                         break;
                 }
                 return true;

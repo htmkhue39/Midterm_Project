@@ -3,22 +3,32 @@ package com.example.midterm_project;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
 import com.example.midterm_project.Adapter.LoginAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
+    public static final String TAG = LoginActivity.class.getName();
+
+    private FirebaseAuth mAuth;
 
     TabLayout tabLayout;
     ViewPager viewPager;
     FloatingActionButton fb, gg, twitter;
     float v=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        mAuth = FirebaseAuth.getInstance();
 
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_page);
@@ -66,5 +76,18 @@ public class LoginActivity extends AppCompatActivity {
                 //Never use
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        if (mAuth.getCurrentUser() != null)
+            openMainActivity();
+    }
+
+    private void openMainActivity() {
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
     }
 }
