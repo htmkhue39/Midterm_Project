@@ -19,41 +19,42 @@ import com.example.midterm_project.R;
 
 import java.util.ArrayList;
 
-public class PopularAdaptor extends RecyclerView.Adapter<PopularAdaptor.ViewHolder>{
+public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.ViewHolder>{
     Context context;
     ArrayList<FoodDomain> popularFood;
 
-    public PopularAdaptor(ArrayList<FoodDomain> popularFood){
+    public FoodAdaptor(ArrayList<FoodDomain> popularFood){
         this.popularFood = popularFood;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_popular, parent, false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_food, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PopularAdaptor.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        holder.title.setText(popularFood.get(position).getTitle());
-        holder.price.setText(String.valueOf(popularFood.get(position).getPrice()));
+    public void onBindViewHolder(@NonNull FoodAdaptor.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        FoodDomain food = popularFood.get(position);
+
+        holder.title.setText(food.getName());
+        holder.price.setText(String.valueOf(food.getPrice()));
 
 
-        int drawableResourceID= holder.itemView.getContext().getResources().getIdentifier(popularFood.get(position).getPic(), "drawable", holder.itemView.getContext().getPackageName());
+//        int drawableResourceID= holder.itemView.getContext().getResources().getIdentifier(popularFood.get(position).getImage(), "drawable", holder.itemView.getContext().getPackageName());
 
         Glide.with(holder.itemView.getContext())
-                .load(drawableResourceID)
+                .load(food.getImage())
                 .into(holder.pic);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent i=new Intent(holder.itemView.getContext(), FoodDetails.class);
-                i.putExtra("object", popularFood.get(position));
+                Intent i = new Intent(holder.itemView.getContext(), FoodDetails.class);
+                i.putExtra("object", food);
 
                 holder.itemView.getContext().startActivity(i);
-
             }
         });
     }

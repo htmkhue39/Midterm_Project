@@ -43,12 +43,11 @@ public class FoodDetails extends AppCompatActivity {
     private void getBundle() {
         object= (FoodDomain) getIntent().getSerializableExtra("object");
 
-        int drawableResourceId=this.getResources().getIdentifier(object.getPic(), "drawable", this.getPackageName());
         Glide.with(this)
-                .load(drawableResourceId)
+                .load(object.getImage())
                 .into(img);
 
-        proName.setText(object.getTitle());
+        proName.setText(object.getName());
         proPrice.setText("$"+object.getPrice());
         proDesc.setText(object.getDescription());
         numberOrderTxt.setText(String.valueOf(numberOrder));

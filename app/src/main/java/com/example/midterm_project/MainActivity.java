@@ -8,21 +8,31 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.GridLayout;
 import android.widget.TextView;
 
 import com.example.midterm_project.Adapter.CategoryAdaptor;
-import com.example.midterm_project.Adapter.PopularAdaptor;
+import com.example.midterm_project.Adapter.FoodAdaptor;
 import com.example.midterm_project.Domain.CategoryDomain;
 import com.example.midterm_project.Domain.FoodDomain;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String TAG = MainActivity.class.getName();
+
+    private DatabaseReference mDatabase;
+
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
     TextView allCategory;
@@ -31,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         BottomNavigationView navigationView = findViewById(R.id.bottom_nav);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -83,17 +95,44 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewPopularList = findViewById(R.id.recyclerView2);
         recyclerViewPopularList.setLayoutManager(gridLayoutManager);
 
-        ArrayList<FoodDomain> foodList = new ArrayList<>();
-        foodList.add(new FoodDomain("Peperoni pizza", "pizza", "slices pepperoni, mozzerella cheese, oregano, ground black peper", 9.776));
-        foodList.add(new FoodDomain("Cheese Burger", "pop_2", "Beef, Cheese, Sauce, Tomato", 8.79));
-        foodList.add(new FoodDomain("Vegetable pizze", "pop_3", "olive oil, cherry tomatoes, oregano", 10.0));
-        foodList.add(new FoodDomain("Vegetable pizze", "pop_3", "olive oil, cherry tomatoes, oregano", 10.0));
-        foodList.add(new FoodDomain("Vegetable pizze", "pop_3", "olive oil, cherry tomatoes, oregano", 10.0));
-        foodList.add(new FoodDomain("Vegetable pizze", "pop_3", "olive oil, cherry tomatoes, oregano", 10.0));
+        ArrayList<FoodDomain> foodDomainList = new ArrayList<>();
 
-
-        adapter2 = new PopularAdaptor(foodList);
+        adapter2 = new FoodAdaptor(foodDomainList);
         recyclerViewPopularList.setAdapter(adapter2);
-    }
 
+        mDatabase.child("foods").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot category : snapshot.getChildren()) {
+                    for (DataSnapshot food : category.getChildren()) {
+                        FoodDomain foodDomain = food.getValue(FoodDomain.class);
+
+                        foodDomainList.add(foodDomain);
+                        adapter2.notifyItemInserted(foodDomainList.size() - 1);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+//        mDatabase.child("foods").child("pizza").child("1").get().addOnCompleteListener(task -> {
+//            if (!task.isSuccessful()) {
+//                Log.e("firebase", "Error getting data", task.getException());
+//            }
+//            else {
+//                Log.d("firebase", String.valueOf(task.getResult().getValue()));
+//
+//                FoodDomain food = task.getResult().getValue(FoodDomain.class);
+//
+//                Log.d(TAG, food.getName());
+//
+//                foodDomainList.add(food);
+//                adapter2.notifyItemInserted(foodDomainList.size() - 1);
+//            }
+//        });
+    }
 }

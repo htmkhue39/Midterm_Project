@@ -3,41 +3,36 @@ package com.example.midterm_project.Domain;
 import java.io.Serializable;
 
 public class FoodDomain implements Serializable {
-    private String title;
-    private String pic;
+    private String name;
+    private String image;
     private String description;
     private Double price;
-    private int quantity;
 
-    public String getPic() {
-        return pic;
+    public FoodDomain() {
+
     }
 
-    public FoodDomain(String title, String pic, String description, Double price) {
-        this.title = title;
-        this.pic = pic;
+    public FoodDomain(String name, String image, String description, Double price) {
+        this.name = name;
+        this.image = image;
         this.description = description;
         this.price = price;
     }
 
-    public FoodDomain(String title, String pic, String description, Double price, int quantity) {
-        this.title = title;
-        this.pic = pic;
-        this.description = description;
-        this.price = price;
-        this.quantity = quantity;
+    public String getName() {
+        return name;
     }
 
-    public String getTitle() {
-        return title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public void setPic(String pic) {
-        this.pic = pic;
+    public String getImage() {
+        return image;
     }
 
     public String getDescription() {
@@ -54,14 +49,6 @@ public class FoodDomain implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 }
 
