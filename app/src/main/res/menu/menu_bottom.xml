@@ -9,6 +9,6 @@
         android:icon="@drawable/ic_baseline_map_24"/>
 
     <item android:id="@+id/action_info"
-        android:title="Information"
+        android:title="Profile"
         android:icon="@drawable/ic_baseline_person_24"/>
 </menu>

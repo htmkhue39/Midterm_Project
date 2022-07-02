@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Cart_listActivity"
     android:backgroundTint="@null"
-    android:background="#f0f2f1">
+    android:background="#EDEDED">
 
     <ScrollView
         android:id="@+id/scrollView2"
