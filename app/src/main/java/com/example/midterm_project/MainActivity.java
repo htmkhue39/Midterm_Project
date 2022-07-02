@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new HomeFragment());
                     break;
                 case R.id.action_favo:
+                    loadFragment(new MapFragment());
                     break;
                 case R.id.action_info:
                     loadFragment(new ProfileFragment());

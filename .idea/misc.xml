@@ -31,6 +31,8 @@
         <entry key="app/src/main/res/layout/cart_item.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/edit_profile.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/edit_profile_fragment.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/fragment_map.xml" value="0.23641304347826086" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/home_fragment.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/home_tab_fragment.xml" value="0.23641304347826086" />

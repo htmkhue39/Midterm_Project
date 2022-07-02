@@ -54,4 +54,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.7'
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    // mapbox
+    implementation 'com.mapbox.maps:android:10.6.0'
 }
