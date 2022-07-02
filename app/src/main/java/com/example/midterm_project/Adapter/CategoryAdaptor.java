@@ -57,7 +57,7 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
                 break;
             }
             case 4:{
-                picUrl="cat_5";
+                picUrl="all";
                 holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.cat_bg4));
                 break;
             }

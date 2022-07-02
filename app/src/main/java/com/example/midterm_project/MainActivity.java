@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.midterm_project.Adapter.CategoryAdaptor;
@@ -32,17 +34,25 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = MainActivity.class.getName();
 
     private DatabaseReference mDatabase;
-
     private RecyclerView.Adapter adapter, adapter2;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
-    TextView allCategory;
+    ImageView bt_cart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        bt_cart=findViewById(R.id.cart);
+
+        bt_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, Cart_listActivity.class));
+            }
+        });
 
         BottomNavigationView navigationView = findViewById(R.id.bottom_nav);
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -80,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         category.add(new CategoryDomain("Burger","cat_2"));
         category.add(new CategoryDomain("Hotdog","cat_3"));
         category.add(new CategoryDomain("Drink","cat_4"));
-        category.add(new CategoryDomain("Donut","cat_5"));
+        category.add(new CategoryDomain("All",""));
 
         adapter=new CategoryAdaptor(category);
         recyclerViewCategoryList.setAdapter(adapter);

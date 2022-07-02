@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:focusableInTouchMode="true"
+    android:layout_marginTop="45dp"
     >
 
     <ImageButton
@@ -20,7 +21,7 @@
     />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/cart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -35,8 +36,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="FOODIE"
-        android:textColor="@color/black"
-        android:textSize="35sp"
+        android:textColor="#183d2c"
+        android:textSize="40dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/bt_sort"
         app:layout_constraintTop_toBottomOf="@+id/bt_sort" />
@@ -46,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:background="#f0f0f0"
+        android:background="@drawable/edit_txt"
         android:drawableStart="@drawable/ic_baseline_search_24"
         android:drawablePadding="20dp"
         android:hint="Search"
@@ -63,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Select Categories"
-        android:textColor="@color/black"
+        android:textColor="#183d2c"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/edit_text"
@@ -84,10 +85,10 @@
         android:id="@+id/text_popular"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="10dp"
         android:text="All foods"
-        android:textColor="@color/black"
+        android:textColor="#183d2c"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
@@ -113,7 +114,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        app:itemBackground="@color/black"
+        android:background="#74a590"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -2,7 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Midterm_Project" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
         <!-- Secondary brand color. -->
         <!-- Status bar color. -->
         <!-- Customize your theme here. -->

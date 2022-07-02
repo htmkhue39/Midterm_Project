@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#74a590"
+    android:background="@drawable/background_intro"
     >
 
     <android.widget.Button
@@ -13,6 +13,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="600dp"
         android:background="@drawable/button_normal"
-        android:text="Get started"
+        android:text="Get started!"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         />
 </LinearLayout>

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FoodDetails">
+    tools:context=".FoodDetails"
+    android:layout_marginTop="50dp">
 
 
     <LinearLayout
@@ -31,20 +32,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:layout_weight="3"
+            android:layout_weight="10"
             android:gravity="center"
             android:text="Product Details"
             android:textColor="@android:color/background_dark"
             android:textSize="20dp" />
 
-        <ImageView
-            android:id="@+id/cart"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            app:srcCompat="@drawable/ic_baseline_favorite_24"
-            android:layout_weight="1"
-            />
 
     </LinearLayout>
 
@@ -65,11 +58,12 @@
         app:layout_constraintBottom_toTopOf="@+id/productName"
         app:layout_constraintTop_toBottomOf="@+id/big_image">
 
-        <ImageView
+        <ImageButton
             android:id="@+id/bt_plus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/plus" />
+            app:srcCompat="@drawable/ic_baseline_add_24"
+            android:background="@drawable/button_normal"/>
 
         <TextView
             android:id="@+id/numberOrderTxt"
@@ -81,11 +75,12 @@
             android:text="1"
             android:textSize="20dp" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/bt_minus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/minus" />
+            android:src="@drawable/ic_baseline_remove_24"
+            android:background="@drawable/button_normal"/>
     </LinearLayout>
 
     <TextView
@@ -94,6 +89,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textSize="20dp"
+        android:textStyle="bold"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,6 +103,7 @@
         android:layout_marginTop="10dp"
         android:text="Price"
         android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/productName"
@@ -127,8 +124,8 @@
 
     <android.widget.Button
         android:id="@+id/button_buy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/button_normal"
@@ -143,8 +140,8 @@
 
     <android.widget.Button
         android:id="@+id/add_cart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
