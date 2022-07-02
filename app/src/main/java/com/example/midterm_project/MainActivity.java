@@ -8,18 +8,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.midterm_project.Adapter.CategoryAdaptor;
-import com.example.midterm_project.Adapter.FoodAdaptor;
+import com.example.midterm_project.Adapter.CategoryAdapter;
+import com.example.midterm_project.Adapter.FoodAdapter;
 import com.example.midterm_project.Domain.CategoryDomain;
 import com.example.midterm_project.Domain.FoodDomain;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -50,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         bt_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, Cart_listActivity.class));
+                startActivity(new Intent(MainActivity.this, CartListActivity.class));
             }
         });
 
@@ -92,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         category.add(new CategoryDomain("Drink","cat_4"));
         category.add(new CategoryDomain("All",""));
 
-        adapter=new CategoryAdaptor(category);
+        adapter=new CategoryAdapter(category);
         recyclerViewCategoryList.setAdapter(adapter);
     }
 
@@ -107,12 +103,15 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayList<FoodDomain> foodDomainList = new ArrayList<>();
 
-        adapter2 = new FoodAdaptor(foodDomainList);
+        adapter2 = new FoodAdapter(foodDomainList);
         recyclerViewPopularList.setAdapter(adapter2);
 
         mDatabase.child("foods").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                adapter2.notifyItemRangeRemoved(0, foodDomainList.size());
+                foodDomainList.clear();
+
                 for (DataSnapshot category : snapshot.getChildren()) {
                     for (DataSnapshot food : category.getChildren()) {
                         FoodDomain foodDomain = food.getValue(FoodDomain.class);
@@ -128,21 +127,5 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-//        mDatabase.child("foods").child("pizza").child("1").get().addOnCompleteListener(task -> {
-//            if (!task.isSuccessful()) {
-//                Log.e("firebase", "Error getting data", task.getException());
-//            }
-//            else {
-//                Log.d("firebase", String.valueOf(task.getResult().getValue()));
-//
-//                FoodDomain food = task.getResult().getValue(FoodDomain.class);
-//
-//                Log.d(TAG, food.getName());
-//
-//                foodDomainList.add(food);
-//                adapter2.notifyItemInserted(foodDomainList.size() - 1);
-//            }
-//        });
     }
 }

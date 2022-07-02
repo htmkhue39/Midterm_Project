@@ -3,6 +3,7 @@ package com.example.midterm_project.Adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,20 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.midterm_project.Cart.Cart;
 import com.example.midterm_project.Domain.FoodDomain;
 import com.example.midterm_project.FoodDetails;
 import com.example.midterm_project.R;
 
 import java.util.ArrayList;
 
-public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.ViewHolder>{
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder>{
+    public static final String TAG = "FoodAdapter";
+
     Context context;
     ArrayList<FoodDomain> popularFood;
 
-    public FoodAdaptor(ArrayList<FoodDomain> popularFood){
+    public FoodAdapter(ArrayList<FoodDomain> popularFood){
         this.popularFood = popularFood;
     }
 
@@ -34,28 +38,27 @@ public class FoodAdaptor extends RecyclerView.Adapter<FoodAdaptor.ViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FoodAdaptor.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         FoodDomain food = popularFood.get(position);
 
         holder.title.setText(food.getName());
         holder.price.setText(String.valueOf(food.getPrice()));
 
-
-//        int drawableResourceID= holder.itemView.getContext().getResources().getIdentifier(popularFood.get(position).getImage(), "drawable", holder.itemView.getContext().getPackageName());
-
         Glide.with(holder.itemView.getContext())
                 .load(food.getImage())
                 .into(holder.pic);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        holder.itemView.setOnClickListener(view -> {
+            Intent i = new Intent(holder.itemView.getContext(), FoodDetails.class);
+            i.putExtra("object", food);
 
-                Intent i = new Intent(holder.itemView.getContext(), FoodDetails.class);
-                i.putExtra("object", food);
+            holder.itemView.getContext().startActivity(i);
+        });
 
-                holder.itemView.getContext().startActivity(i);
-            }
+        holder.button_add.setOnClickListener(view -> {
+            Log.d(TAG, "Add item " + food.getName());
+
+            Cart.increaseItem(food, 1);
         });
     }
 

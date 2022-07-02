@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.midterm_project.Cart.Cart;
 import com.example.midterm_project.Domain.FoodDomain;
 
 public class FoodDetails extends AppCompatActivity {
@@ -17,6 +19,7 @@ public class FoodDetails extends AppCompatActivity {
 
     FoodDomain object;
     int numberOrder = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,22 +29,17 @@ public class FoodDetails extends AppCompatActivity {
         getBundle();
         back = findViewById(R.id.back2);
 
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                Intent i = new Intent(FoodDetails.this, MainActivity.class);
-                startActivity(i);
                 finish();
-
             }
         });
 
     }
 
     private void getBundle() {
-        object= (FoodDomain) getIntent().getSerializableExtra("object");
+        object = (FoodDomain) getIntent().getSerializableExtra("object");
 
         Glide.with(this)
                 .load(object.getImage())
@@ -81,4 +79,7 @@ public class FoodDetails extends AppCompatActivity {
         bt_minus = findViewById(R.id.bt_minus);
     }
 
+    public void addCart(View view) {
+        Cart.increaseItem(object, numberOrder);
+    }
 }

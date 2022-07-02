@@ -17,11 +17,11 @@ import com.example.midterm_project.R;
 
 import java.util.ArrayList;
 
-public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHolder>{
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
 
     ArrayList<CategoryDomain>categoryDomains;
 
-    public CategoryAdaptor(ArrayList<CategoryDomain>categoryDomains){
+    public CategoryAdapter(ArrayList<CategoryDomain>categoryDomains){
         this.categoryDomains=categoryDomains;
     }
 
@@ -32,7 +32,7 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdaptor.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
         holder.categoryName.setText(categoryDomains.get(position).getTitle());
         String picUrl = "";
         switch (position){
