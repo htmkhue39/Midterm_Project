@@ -2,15 +2,13 @@ package com.example.midterm_project;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.example.midterm_project.Cart.Cart;
+import com.example.midterm_project.Domain.Cart;
 import com.example.midterm_project.Domain.FoodDomain;
 
 public class FoodDetails extends AppCompatActivity {

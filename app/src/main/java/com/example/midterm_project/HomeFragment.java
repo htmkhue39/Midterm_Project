@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.midterm_project.Adapter.CategoryAdapter;
 import com.example.midterm_project.Adapter.FoodAdapter;
-import com.example.midterm_project.Cart.Cart;
+import com.example.midterm_project.Domain.Cart;
 import com.example.midterm_project.Domain.CategoryDomain;
 import com.example.midterm_project.Domain.FoodDomain;
 import com.google.firebase.database.DataSnapshot;

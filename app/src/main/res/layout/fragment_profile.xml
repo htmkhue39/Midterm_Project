@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="45dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -22,8 +22,34 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:layout_marginStart="20dp"
-            android:layout_weight="0"
+            android:layout_weight="1"
             android:src="@drawable/ic_baseline_arrow_back_24" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_weight="100"
+            android:gravity="center"
+            android:text="Profile"
+            android:textColor="@android:color/background_dark"
+            android:textSize="25dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Logout"
+            android:textColor="@android:color/background_dark"
+            android:textSize="15dp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 
@@ -38,7 +64,7 @@
         android:src="@drawable/avatar"
     />
 
-    <EditText
+    <TextView
         android:id="@+id/person_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -53,30 +79,13 @@
         android:text="Name"
         />
 
-    <EditText
-        android:id="@+id/person_birthday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_name"
-        android:drawableStart="@drawable/ic_baseline_calendar_month_24"
-        android:drawablePadding="10dp"
-        android:gravity="start"
-        android:textAlignment="textStart"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        android:text="Birthday"
-        />
-
-    <EditText
+    <TextView
         android:id="@+id/person_phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/person_birthday"
+        app:layout_constraintTop_toBottomOf="@+id/person_name"
         android:drawableStart="@drawable/ic_baseline_location_on_24"
         android:drawablePadding="10dp"
         android:gravity="start"
@@ -86,7 +95,7 @@
         android:text="Address"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/person_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -102,7 +111,7 @@
         android:text="Phone number"
         />
 
-    <EditText
+    <TextView
         android:id="@+id/person_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -119,14 +128,16 @@
         />
 
     <android.widget.Button
+        android:id="@+id/editProfile"
         android:layout_width="130dp"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/button_normal"
-        android:text="Update"
+        android:text="Edit Profile"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/person_email" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

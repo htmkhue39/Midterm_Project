@@ -12,8 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.midterm_project.Cart.Cart;
-import com.example.midterm_project.Cart.CartItem;
+import com.example.midterm_project.Domain.Cart;
+import com.example.midterm_project.Domain.CartItem;
 import com.example.midterm_project.Domain.FoodDomain;
 import com.example.midterm_project.R;
 

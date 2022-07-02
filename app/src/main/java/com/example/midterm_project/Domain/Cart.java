@@ -1,8 +1,7 @@
-package com.example.midterm_project.Cart;
+package com.example.midterm_project.Domain;
 
 import androidx.annotation.NonNull;
 
-import com.example.midterm_project.Domain.FoodDomain;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;

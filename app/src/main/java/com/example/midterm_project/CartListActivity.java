@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.midterm_project.Adapter.CartAdapter;
-import com.example.midterm_project.Cart.Cart;
+import com.example.midterm_project.Domain.Cart;
 
 public class CartListActivity extends AppCompatActivity {
     RecyclerView cartRecyclerView;
@@ -22,13 +22,15 @@ public class CartListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cart_list);
 
         cartRecyclerView = findViewById(R.id.cart_list_view);
-        itemTotal = findViewById(R.id.itemTotal);
         bt_back=findViewById(R.id.back2);
 
         CartAdapter cartAdapter = new CartAdapter();
         cartRecyclerView.setAdapter(cartAdapter);
         cartRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         cartAdapter.notifyItemRangeInserted(0, Cart.getCartSize());
+
+        itemTotal = findViewById(R.id.itemTotal);
+        itemTotal.setText("$" + Cart.getTotal());
 
         cartAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override

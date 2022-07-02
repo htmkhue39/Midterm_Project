@@ -1,4 +1,4 @@
-package com.example.midterm_project.Cart;
+package com.example.midterm_project.Domain;
 
 import com.example.midterm_project.Domain.FoodDomain;
 
