@@ -57,21 +57,6 @@
             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_fb"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:elevation="35dp"
-            android:src="@drawable/fb"
-            app:backgroundTint="@color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/fab_google"
-            app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_page"
-            app:tint="@null" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_google"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,22 +69,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view_page"
         />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/twitter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:backgroundTint="@color/white"
-            app:tint="@null"
-            android:src="@drawable/twitter"
-            android:elevation="35dp"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/fab_google"
-            app:layout_constraintTop_toBottomOf="@+id/view_page"
-            android:layout_marginLeft="10dp"
-            />
 
 
 

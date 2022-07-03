@@ -20,7 +20,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     TabLayout tabLayout;
     ViewPager viewPager;
-    FloatingActionButton fb, gg, twitter;
+    FloatingActionButton gg;
     float v=0;
 
     @Override
@@ -32,9 +32,8 @@ public class LoginActivity extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.view_page);
-        fb = findViewById(R.id.fab_fb);
         gg = findViewById(R.id.fab_google);
-        twitter = findViewById(R.id.twitter);
+
 
 
         tabLayout.addTab(tabLayout.newTab().setText("Login"));
@@ -46,19 +45,16 @@ public class LoginActivity extends AppCompatActivity {
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        fb.setTranslationY(300);
+
         gg.setTranslationY(300);
-        twitter.setTranslationY(300);
 
 
-        fb.setAlpha(v);
+
+
         gg.setAlpha(v);
-        twitter.setAlpha(v);
         tabLayout.setAlpha(v);
 
-        fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
         gg.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
-        twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
         tabLayout.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
