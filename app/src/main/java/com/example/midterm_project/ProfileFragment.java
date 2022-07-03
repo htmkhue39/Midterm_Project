@@ -36,7 +36,7 @@ public class ProfileFragment extends Fragment {
     TextView name, address, phone, email, logout;
     Button editProfile;
 
-    Profile profile = new Profile();
+    Profile profile;
 
     @Nullable
     @Override
@@ -60,7 +60,9 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 profile = snapshot.getValue(Profile.class);
-                profile.setEmail(mAuth.getCurrentUser().getEmail());
+
+                if (profile == null)
+                    profile = new Profile(mAuth.getCurrentUser().getEmail());
 
                 showProfile(profile);
 
