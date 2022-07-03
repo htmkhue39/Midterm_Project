@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Midterm_Project"
         tools:targetApi="31">
         <activity
+            android:name=".ForgotPassword"
+            android:exported="false" />
+        <activity
             android:name=".CartListActivity"
             android:exported="false" />
         <activity

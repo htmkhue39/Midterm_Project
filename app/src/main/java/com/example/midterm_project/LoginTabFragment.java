@@ -65,6 +65,13 @@ public class LoginTabFragment extends Fragment {
             }
         });
 
+        forgetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), ForgotPassword.class));
+            }
+        });
+
         return root;
     }
 

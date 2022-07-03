@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.midterm_project.Adapter.LoginAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -17,7 +18,6 @@ public class LoginActivity extends AppCompatActivity {
     public static final String TAG = LoginActivity.class.getName();
 
     private FirebaseAuth mAuth;
-
     TabLayout tabLayout;
     ViewPager viewPager;
     FloatingActionButton fb, gg, twitter;
@@ -35,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
         fb = findViewById(R.id.fab_fb);
         gg = findViewById(R.id.fab_google);
         twitter = findViewById(R.id.twitter);
+
 
         tabLayout.addTab(tabLayout.newTab().setText("Login"));
         tabLayout.addTab(tabLayout.newTab().setText("Signup"));
