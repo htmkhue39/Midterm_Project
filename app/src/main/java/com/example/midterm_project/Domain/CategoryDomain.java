@@ -2,7 +2,7 @@ package com.example.midterm_project.Domain;
 
 public class CategoryDomain {
     private String title;
-    private String pic;
+    private int pic;
 
     public String getTitle() {
         return title;
@@ -12,15 +12,15 @@ public class CategoryDomain {
         this.title = title;
     }
 
-    public String getPic() {
+    public int getPic() {
         return pic;
     }
 
-    public void setPic(String pic) {
+    public void setPic(int pic) {
         this.pic = pic;
     }
 
-    public CategoryDomain(String title, String pic){
+    public CategoryDomain(String title, int pic){
         this.title = title;
         this.pic = pic;
     }

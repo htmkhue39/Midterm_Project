@@ -19,10 +19,16 @@ import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder>{
 
-    ArrayList<CategoryDomain>categoryDomains;
+    public interface OnItemClickListener {
+        void onItemClick(CategoryDomain item);
+    }
 
-    public CategoryAdapter(ArrayList<CategoryDomain>categoryDomains){
-        this.categoryDomains=categoryDomains;
+    ArrayList<CategoryDomain>categoryDomains;
+    OnItemClickListener listener;
+
+    public CategoryAdapter(ArrayList<CategoryDomain> categoryDomains, OnItemClickListener listener) {
+        this.categoryDomains = categoryDomains;
+        this.listener = listener;
     }
 
     @Override
@@ -33,41 +39,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.ViewHolder holder, int position) {
-        holder.categoryName.setText(categoryDomains.get(position).getTitle());
-        String picUrl = "";
-        switch (position){
-            case 0:{
-                picUrl="cat_1";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.cat_bg));
-                break;
-            }
-            case 1:{
-                picUrl="cat_2";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.cat_bg1));
-                break;
-            }
-            case 2:{
-                picUrl="cat_3";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.cat_bg2));
-                break;
-            }
-            case 3:{
-                picUrl="cat_4";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.cat_bg3));
-                break;
-            }
-            case 4:{
-                picUrl="all";
-                holder.mainLayout.setBackground(ContextCompat.getDrawable(holder.itemView.getContext(),R.drawable.cat_bg4));
-                break;
-            }
-        }
+        CategoryDomain category = categoryDomains.get(position);
 
-        int drawableResourceID= holder.itemView.getContext().getResources().getIdentifier(picUrl, "drawable", holder.itemView.getContext().getPackageName());
-
+        holder.categoryName.setText(category.getTitle());
         Glide.with(holder.itemView.getContext())
-                .load(drawableResourceID)
+                .load(category.getPic())
                 .into(holder.categoryImage);
+
+        holder.itemView.setOnClickListener(view -> {
+            listener.onItemClick(category);
+        });
     }
 
     @Override

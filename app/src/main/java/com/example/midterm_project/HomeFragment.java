@@ -2,6 +2,7 @@ package com.example.midterm_project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,10 +29,14 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
+    public static final String TAG = "HomeFragment";
+
     private DatabaseReference mDatabase;
-    private RecyclerView.Adapter adapter, adapter2;
+    private RecyclerView.Adapter adapter, foodsAdapter;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
     ImageView bt_cart;
+
+    ArrayList<FoodDomain> foods = new ArrayList<>();
 
     @Nullable
     @Override
@@ -62,15 +67,14 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
         recyclerViewCategoryList.setLayoutManager(linearLayoutManager);
 
-
         ArrayList<CategoryDomain> category = new ArrayList<>();
-        category.add(new CategoryDomain("Pizza","cat_1"));
-        category.add(new CategoryDomain("Burger","cat_2"));
-        category.add(new CategoryDomain("Hotdog","cat_3"));
-        category.add(new CategoryDomain("Drink","cat_4"));
-        category.add(new CategoryDomain("All",""));
+        category.add(new CategoryDomain("Pizza",R.drawable.cat_1));
+        category.add(new CategoryDomain("Burger",R.drawable.cat_2));
+        category.add(new CategoryDomain("Hotdog",R.drawable.cat_3));
+        category.add(new CategoryDomain("Drink",R.drawable.cat_4));
+        category.add(new CategoryDomain("All",R.drawable.all));
 
-        adapter=new CategoryAdapter(category);
+        adapter=new CategoryAdapter(category, item -> showFoodsInCategory(item.getTitle().toLowerCase()));
         recyclerViewCategoryList.setAdapter(adapter);
     }
 
@@ -82,32 +86,56 @@ public class HomeFragment extends Fragment {
         };
         recyclerViewPopularList.setLayoutManager(gridLayoutManager);
 
-        ArrayList<FoodDomain> foodDomainList = new ArrayList<>();
+        foodsAdapter = new FoodAdapter(foods);
+        recyclerViewPopularList.setAdapter(foodsAdapter);
 
-        adapter2 = new FoodAdapter(foodDomainList);
-        recyclerViewPopularList.setAdapter(adapter2);
+        showFoodsInCategory("all");
+    }
 
-        mDatabase.child("foods").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                adapter2.notifyItemRangeRemoved(0, foodDomainList.size());
-                foodDomainList.clear();
+    private void showFoodsInCategory(String category) {
+        if (!category.equals("all")) {
+            mDatabase.child("foods").child(category).addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    foodsAdapter.notifyItemRangeRemoved(0, foods.size());
+                    foods.clear();
 
-                for (DataSnapshot category : snapshot.getChildren()) {
-                    for (DataSnapshot food : category.getChildren()) {
-                        FoodDomain foodDomain = food.getValue(FoodDomain.class);
+                    for (DataSnapshot foodSnapshot : snapshot.getChildren()) {
+                            FoodDomain foodDomain = foodSnapshot.getValue(FoodDomain.class);
 
-                        foodDomainList.add(foodDomain);
-                        adapter2.notifyItemInserted(foodDomainList.size() - 1);
+                            foods.add(foodDomain);
+                            foodsAdapter.notifyItemInserted(foods.size() - 1);
+                        }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e(TAG, "Get foods failed", error.toException());
+                }
+            });
+        } else {
+            mDatabase.child("foods").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    foodsAdapter.notifyItemRangeRemoved(0, foods.size());
+                    foods.clear();
+
+                    for (DataSnapshot category : snapshot.getChildren()) {
+                        for (DataSnapshot food : category.getChildren()) {
+                            FoodDomain foodDomain = food.getValue(FoodDomain.class);
+
+                            foods.add(foodDomain);
+                            foodsAdapter.notifyItemInserted(foods.size() - 1);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e(TAG, "Get foods failed", error.toException());
+                }
+            });
+        }
     }
 }
 
