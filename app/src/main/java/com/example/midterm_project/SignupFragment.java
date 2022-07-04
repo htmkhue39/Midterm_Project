@@ -1,6 +1,5 @@
 package com.example.midterm_project;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,10 +18,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.concurrent.Executor;
-
-public class SignupTabFragment extends Fragment {
-    public static final String TAG = SignupTabFragment.class.getName();
+public class SignupFragment extends Fragment {
+    public static final String TAG = SignupFragment.class.getName();
 
     private FirebaseAuth mAuth;
 
@@ -32,7 +29,7 @@ public class SignupTabFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.signup_tab_fragment, container, false);
+        ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_signup, container, false);
 
         mAuth = FirebaseAuth.getInstance();
 
