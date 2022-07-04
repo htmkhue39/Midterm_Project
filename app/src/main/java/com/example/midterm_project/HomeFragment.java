@@ -2,10 +2,12 @@ package com.example.midterm_project;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -32,9 +34,13 @@ public class HomeFragment extends Fragment {
     public static final String TAG = "HomeFragment";
 
     private DatabaseReference mDatabase;
-    private RecyclerView.Adapter adapter, foodsAdapter;
+
+    CategoryAdapter categoriesAdapter;
+    FoodAdapter foodsAdapter;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
+
     ImageView bt_cart;
+    EditText searchEditText;
 
     ArrayList<FoodDomain> foods = new ArrayList<>();
 
@@ -45,6 +51,7 @@ public class HomeFragment extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         bt_cart=root.findViewById(R.id.cart);
+        searchEditText = root.findViewById(R.id.searchEditText);
         recyclerViewCategoryList = root.findViewById(R.id.recyclerView);
         recyclerViewPopularList = root.findViewById(R.id.recyclerView2);
 
@@ -60,6 +67,23 @@ public class HomeFragment extends Fragment {
         recyclerViewCategory();
         recyclerViewPopular();
 
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                foodsAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         return root;
     }
 
@@ -74,8 +98,8 @@ public class HomeFragment extends Fragment {
         category.add(new CategoryDomain("Drink",R.drawable.cat_4));
         category.add(new CategoryDomain("All",R.drawable.all));
 
-        adapter=new CategoryAdapter(category, item -> showFoodsInCategory(item.getTitle().toLowerCase()));
-        recyclerViewCategoryList.setAdapter(adapter);
+        categoriesAdapter =new CategoryAdapter(category, item -> showFoodsInCategory(item.getTitle().toLowerCase()));
+        recyclerViewCategoryList.setAdapter(categoriesAdapter);
     }
 
     private void recyclerViewPopular() {
@@ -93,49 +117,38 @@ public class HomeFragment extends Fragment {
     }
 
     private void showFoodsInCategory(String category) {
-        if (!category.equals("all")) {
-            mDatabase.child("foods").child(category).addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    foodsAdapter.notifyItemRangeRemoved(0, foods.size());
-                    foods.clear();
+        DatabaseReference ref = mDatabase.child("foods");
 
+        if (!category.equals("all"))
+            ref = ref.child(category);
+
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                foods.clear();
+
+                if (!category.equals("all")) {
                     for (DataSnapshot foodSnapshot : snapshot.getChildren()) {
-                            FoodDomain foodDomain = foodSnapshot.getValue(FoodDomain.class);
-
-                            foods.add(foodDomain);
-                            foodsAdapter.notifyItemInserted(foods.size() - 1);
-                        }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.e(TAG, "Get foods failed", error.toException());
-                }
-            });
-        } else {
-            mDatabase.child("foods").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    foodsAdapter.notifyItemRangeRemoved(0, foods.size());
-                    foods.clear();
-
+                        FoodDomain foodDomain = foodSnapshot.getValue(FoodDomain.class);
+                        foods.add(foodDomain);
+                    }
+                } else {
                     for (DataSnapshot category : snapshot.getChildren()) {
                         for (DataSnapshot food : category.getChildren()) {
                             FoodDomain foodDomain = food.getValue(FoodDomain.class);
-
                             foods.add(foodDomain);
-                            foodsAdapter.notifyItemInserted(foods.size() - 1);
                         }
                     }
                 }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                    Log.e(TAG, "Get foods failed", error.toException());
-                }
-            });
-        }
+                foodsAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
 

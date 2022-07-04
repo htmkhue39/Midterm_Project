@@ -1,12 +1,13 @@
 package com.example.midterm_project.Adapter;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,14 +22,14 @@ import com.example.midterm_project.R;
 
 import java.util.ArrayList;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder>{
+public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> implements Filterable {
     public static final String TAG = "FoodAdapter";
 
-    Context context;
-    ArrayList<FoodDomain> popularFood;
+    ArrayList<FoodDomain> foods, foodsFiltered;
 
-    public FoodAdapter(ArrayList<FoodDomain> popularFood){
-        this.popularFood = popularFood;
+    public FoodAdapter(ArrayList<FoodDomain> foods){
+        this.foods = foods;
+        this.foodsFiltered = foods;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull FoodAdapter.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        FoodDomain food = popularFood.get(position);
+        FoodDomain food = foodsFiltered.get(position);
 
         holder.title.setText(food.getName());
         holder.price.setText(String.valueOf(food.getPrice()));
@@ -64,7 +65,41 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder>{
 
     @Override
     public int getItemCount() {
-        return popularFood.size();
+        return foodsFiltered.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+
+                if (charString.isEmpty()) {
+                    foodsFiltered = foods;
+                } else {
+                    ArrayList<FoodDomain> filteredList = new ArrayList<>();
+
+                    for (FoodDomain row : foods)
+                        if (row.getName().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+
+                    foodsFiltered = filteredList;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = foodsFiltered;
+
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                foodsFiltered = (ArrayList<FoodDomain>) filterResults.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

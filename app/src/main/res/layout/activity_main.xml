@@ -24,6 +24,6 @@
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
         android:layout_gravity="bottom"
-        app:menu="@menu/menu_bottom" />
+        app:menu="@menu/menu_bottom"/>
     
 </LinearLayout>

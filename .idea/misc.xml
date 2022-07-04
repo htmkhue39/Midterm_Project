@@ -38,10 +38,13 @@
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/viewholder_food.xml" value="0.536" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/layout/viewholder_popular.xml" value="0.72" />
         <entry key="..\:/Users/hgmin/StudioProjects/Midterm_Project/app/src/main/res/menu/menu_bottom.xml" value="0.24635416666666668" />
+        <entry key="app/src/main/res/drawable/cart_background.xml" value="0.1615" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.23641304347826086" />
         <entry key="app/src/main/res/layout/fragment_map.xml" value="0.12635869565217392" />
         <entry key="app/src/main/res/layout/login_tab_fragment.xml" value="0.15070921985815602" />
+        <entry key="app/src/main/res/layout/viewholder_food.xml" value="0.23641304347826086" />
       </map>
     </option>
   </component>
