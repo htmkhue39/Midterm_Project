@@ -22,7 +22,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
     public interface OnItemClickListener {
         void onItemClick(CategoryDomain item);
     }
-
+    private int selectedItemPosition = -1;
     ArrayList<CategoryDomain>categoryDomains;
     OnItemClickListener listener;
 
@@ -46,9 +46,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 .load(category.getPic())
                 .into(holder.categoryImage);
 
-        holder.itemView.setOnClickListener(view -> {
-            listener.onItemClick(category);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClick(category);
+                selectedItemPosition = holder.getAdapterPosition();
+                notifyDataSetChanged();
+            }
         });
+
+        if(selectedItemPosition == position)
+            holder.itemView.setBackgroundResource(R.drawable.cat_bg);
+        else
+            holder.itemView.setBackgroundResource(R.drawable.cat_bg1);
     }
 
     @Override
