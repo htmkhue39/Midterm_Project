@@ -57,12 +57,7 @@ public class LoginFragment extends Fragment {
 
         login.setOnClickListener(view -> signinWithEmailAndPassword());
 
-        forgetPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), ForgotPassword.class));
-            }
-        });
+        forgetPass.setOnClickListener(view -> startActivity(new Intent(getContext(), ForgotPasswordActivity.class)));
 
         return root;
     }

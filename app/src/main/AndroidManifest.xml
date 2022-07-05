@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Midterm_Project"
         tools:targetApi="31">
         <activity
-            android:name=".ForgotPassword"
+            android:name=".ForgotPasswordActivity"
             android:exported="false" />
         <activity
             android:name=".CartListActivity"
@@ -41,7 +41,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FoodDetails"
+            android:name=".FoodDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".EditProfileActivity"

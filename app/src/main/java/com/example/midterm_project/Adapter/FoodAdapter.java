@@ -1,6 +1,7 @@
 package com.example.midterm_project.Adapter;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.midterm_project.Domain.Cart;
 import com.example.midterm_project.Domain.FoodDomain;
-import com.example.midterm_project.FoodDetails;
+import com.example.midterm_project.FoodDetailsActivity;
 import com.example.midterm_project.R;
 
 import java.util.ArrayList;
@@ -25,9 +27,11 @@ import java.util.ArrayList;
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> implements Filterable {
     public static final String TAG = "FoodAdapter";
 
+    Context context;
     ArrayList<FoodDomain> foods, foodsFiltered;
 
-    public FoodAdapter(ArrayList<FoodDomain> foods){
+    public FoodAdapter(Context context, ArrayList<FoodDomain> foods){
+        this.context = context;
         this.foods = foods;
         this.foodsFiltered = foods;
     }
@@ -50,7 +54,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
                 .into(holder.pic);
 
         holder.itemView.setOnClickListener(view -> {
-            Intent i = new Intent(holder.itemView.getContext(), FoodDetails.class);
+            Intent i = new Intent(holder.itemView.getContext(), FoodDetailsActivity.class);
             i.putExtra("object", food);
 
             holder.itemView.getContext().startActivity(i);
@@ -59,7 +63,9 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ViewHolder> im
         holder.button_add.setOnClickListener(view -> {
             Log.d(TAG, "Add item " + food.getName());
 
-            Cart.increaseItem(food, 1);
+            Cart.increaseItem(food, 1, () -> {
+                Toast.makeText(context, "Added 1 " + food.getName() + " to cart!", Toast.LENGTH_SHORT).show();
+            });
         });
     }
 

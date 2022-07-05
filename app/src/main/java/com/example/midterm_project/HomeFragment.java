@@ -60,17 +60,16 @@ public class HomeFragment extends Fragment {
         recyclerViewPopularList = root.findViewById(R.id.recyclerView2);
         sl = root.findViewById(R.id.notifcation_textview);
 
-        Cart.initCart();
-
-        //TODO: set text vô đây dùm nhe nói chung làm sao cho nó hiện cái current item lên là dc
-        //sl.setText
-
-        bt_cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), CartListActivity.class));
+        Cart.initCart(quantity -> {
+            if (quantity == 0) {
+                sl.setVisibility(View.INVISIBLE);
+            } else {
+                sl.setVisibility(View.VISIBLE);
+                sl.setText(String.valueOf(quantity));
             }
         });
+
+        bt_cart.setOnClickListener(view -> startActivity(new Intent(getContext(), CartListActivity.class)));
 
         recyclerViewCategory();
         recyclerViewPopular();
@@ -118,7 +117,7 @@ public class HomeFragment extends Fragment {
         };
         recyclerViewPopularList.setLayoutManager(gridLayoutManager);
 
-        foodsAdapter = new FoodAdapter(foods);
+        foodsAdapter = new FoodAdapter(getContext(), foods);
         recyclerViewPopularList.setAdapter(foodsAdapter);
 
         showFoodsInCategory("all");

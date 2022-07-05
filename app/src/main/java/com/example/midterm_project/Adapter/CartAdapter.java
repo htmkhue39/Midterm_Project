@@ -43,16 +43,13 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
         holder.quantity.setText(String.valueOf(item.getQuantity()));
 
         holder.plus.setOnClickListener(view -> {
-            Cart.increaseItem(food, 1);
-            notifyDataSetChanged();
+            Cart.increaseItem(food, 1, () -> notifyDataSetChanged());
         });
 
         holder.minus.setOnClickListener(view -> {
-            if (Cart.decreaseItem(food, 1)) {
-                notifyDataSetChanged();
+            if (Cart.decreaseItem(food, 1, () -> notifyDataSetChanged())) {
                 Log.d(TAG, "Remove item " + position);
             } else {
-                notifyDataSetChanged();
                 Log.d(TAG, "Decrease item " + position);
             }
         });

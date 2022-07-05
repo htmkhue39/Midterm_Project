@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.midterm_project.Domain.Cart;
 import com.example.midterm_project.Domain.FoodDomain;
 
-public class FoodDetails extends AppCompatActivity {
+public class FoodDetailsActivity extends AppCompatActivity {
     ImageView img, back, bt_plus, bt_minus;
     TextView proName, proPrice, proDesc, numberOrderTxt;
 
@@ -27,12 +28,7 @@ public class FoodDetails extends AppCompatActivity {
         getBundle();
         back = findViewById(R.id.back2);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        back.setOnClickListener(view -> finish());
 
     }
 
@@ -48,22 +44,16 @@ public class FoodDetails extends AppCompatActivity {
         proDesc.setText(object.getDescription());
         numberOrderTxt.setText(String.valueOf(numberOrder));
 
-        bt_plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                numberOrder = numberOrder+1;
-                numberOrderTxt.setText(String.valueOf(numberOrder));
-            }
+        bt_plus.setOnClickListener(view -> {
+            numberOrder = numberOrder+1;
+            numberOrderTxt.setText(String.valueOf(numberOrder));
         });
 
-        bt_minus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(numberOrder > 1) {
-                    numberOrder = numberOrder - 1;
-                }
-                numberOrderTxt.setText(String.valueOf(numberOrder));
+        bt_minus.setOnClickListener(view -> {
+            if(numberOrder > 1) {
+                numberOrder = numberOrder - 1;
             }
+            numberOrderTxt.setText(String.valueOf(numberOrder));
         });
     }
 
@@ -78,6 +68,8 @@ public class FoodDetails extends AppCompatActivity {
     }
 
     public void addCart(View view) {
-        Cart.increaseItem(object, numberOrder);
+        Cart.increaseItem(object, numberOrder, () -> {
+            Toast.makeText(FoodDetailsActivity.this, "Added " + numberOrder + " " + object.getName() + " to cart!", Toast.LENGTH_SHORT).show();
+        });
     }
 }
