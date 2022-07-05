@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,8 +14,9 @@ import com.example.midterm_project.Domain.Cart;
 
 public class CartListActivity extends AppCompatActivity {
     RecyclerView cartRecyclerView;
-    TextView itemTotal;
+    TextView itemTotal, fee, total;
     ImageView bt_back;
+    Button checkOut;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +25,9 @@ public class CartListActivity extends AppCompatActivity {
 
         cartRecyclerView = findViewById(R.id.cart_list_view);
         bt_back=findViewById(R.id.back2);
+        fee=findViewById(R.id.fee);
+        total=findViewById(R.id.total);
+        checkOut=findViewById(R.id.checkout);
 
         CartAdapter cartAdapter = new CartAdapter();
         cartRecyclerView.setAdapter(cartAdapter);
@@ -31,6 +36,10 @@ public class CartListActivity extends AppCompatActivity {
 
         itemTotal = findViewById(R.id.itemTotal);
         itemTotal.setText("$" + Cart.getTotal());
+        fee.setText("$" + String.valueOf(5.5));
+
+        Double temp = Cart.getTotal() + 5.5;
+        total.setText("$"+ temp);
 
         cartAdapter.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
             @Override
@@ -41,6 +50,10 @@ public class CartListActivity extends AppCompatActivity {
         });
 
         bt_back.setOnClickListener(view -> {
+            finish();
+        });
+
+        checkOut.setOnClickListener(view -> {
             finish();
         });
     }

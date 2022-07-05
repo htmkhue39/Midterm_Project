@@ -92,6 +92,7 @@
                     android:textColor="@color/black"
                     android:textStyle="bold"/>
                 <TextView
+                    android:id="@+id/fee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$0"
@@ -111,12 +112,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delivery Services:"
+                    android:text="Total:"
                     android:layout_weight="1"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:textSize="20dp"/>
                 <TextView
+                    android:id="@+id/total"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="$0"
@@ -128,6 +130,7 @@
             </LinearLayout>
 
             <android.widget.Button
+                android:id="@+id/checkout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"
