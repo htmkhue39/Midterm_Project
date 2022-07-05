@@ -55,12 +55,7 @@ public class LoginFragment extends Fragment {
         forgetPass.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
         login.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                signinWithEmailAndPassword();
-            }
-        });
+        login.setOnClickListener(view -> signinWithEmailAndPassword());
 
         forgetPass.setOnClickListener(new View.OnClickListener() {
             @Override
