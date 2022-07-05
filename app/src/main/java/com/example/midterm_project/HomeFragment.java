@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,6 +29,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
@@ -39,6 +42,7 @@ public class HomeFragment extends Fragment {
     FoodAdapter foodsAdapter;
     private RecyclerView recyclerViewCategoryList, recyclerViewPopularList;
 
+    TextView sl;
     ImageView bt_cart;
     EditText searchEditText;
 
@@ -54,8 +58,12 @@ public class HomeFragment extends Fragment {
         searchEditText = root.findViewById(R.id.searchEditText);
         recyclerViewCategoryList = root.findViewById(R.id.recyclerView);
         recyclerViewPopularList = root.findViewById(R.id.recyclerView2);
+        sl = root.findViewById(R.id.notifcation_textview);
 
         Cart.initCart();
+
+        //TODO: set text vô đây dùm nhe nói chung làm sao cho nó hiện cái current item lên là dc
+        //sl.setText
 
         bt_cart.setOnClickListener(new View.OnClickListener() {
             @Override

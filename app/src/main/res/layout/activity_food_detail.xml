@@ -123,37 +123,18 @@
         app:layout_constraintTop_toBottomOf="@+id/productName" />
 
     <android.widget.Button
-        android:id="@+id/button_buy"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/button_normal"
-        android:text="Buy Now"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@+id/add_cart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/add_cart"
-        app:layout_constraintTop_toTopOf="@+id/add_cart"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <android.widget.Button
         android:id="@+id/add_cart"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:layout_marginStart="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/button_add"
+        android:onClick="addCart"
         android:text="+ Cart"
         android:textSize="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_buy"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prodPrice"
-        app:layout_constraintVertical_bias="1.0"
-        android:onClick="addCart"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 

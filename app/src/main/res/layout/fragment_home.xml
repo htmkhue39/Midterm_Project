@@ -17,6 +17,21 @@
         />
 
     <TextView
+        android:id="@+id/notifcation_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/circle_tv"
+        android:text="0"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cart"
+        app:layout_constraintEnd_toEndOf="@+id/cart"
+        app:layout_constraintStart_toEndOf="@+id/cart"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
